@@ -24,11 +24,20 @@
 
 	<div class="todo-list">
         {% for task in tasks %}
-        <div class="item-row">
-            {{ task }} <br/>
-            <a class="btn btn-sm btn-success" href="{% url 'update_task' task.id %}">Update</a> 
-            <a class="btn btn-sm btn-danger" href="{% url 'delete_task' task.id %}">Delete</a>
-        </div>
+            {% if task.complete %}
+                <div class="item-row-complete">
+                    {{ task }} <br/>
+                    <a class="btn btn-sm btn-success" href="{% url 'update_task' task.id %}">Update</a> 
+                    <a class="btn btn-sm btn-danger" href="{% url 'delete_task' task.id %}">Delete</a>
+                </div>
+            {% else %}
+                <div class="item-row">
+                    {{ task }} <br/>
+                    <a class="btn btn-sm btn-success" href="{% url 'update_task' task.id %}">Update</a> 
+                    <a class="btn btn-sm btn-danger" href="{% url 'delete_task' task.id %}">Delete</a>
+                </div>
+            {% endif %}
+        
 
         {% endfor %}
 

@@ -20,7 +20,7 @@ def apiOverview(request):
 
 @api_view(['GET'])
 def taskList(request):
-    tasks = Tasks.objects.all()
+    tasks = Tasks.objects.all().order_by('-id')
     serializers = TaskSerializer(tasks, many=True)
     return Response(serializers.data)
 
